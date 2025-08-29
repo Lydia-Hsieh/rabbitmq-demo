@@ -7,20 +7,13 @@ import com.rabbitmq.client.ConnectionFactory;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import static common.Constants.RABBIT_MQ_ADDRESS;
+import static common.Constants.RABBIT_MQ_PORT;
+import static common.Constants.RABBIT_MQ_TEST_PASSWORD;
+import static common.Constants.RABBIT_MQ_TEST_USERNAME;
+import static common.Constants.RABBIT_MQ_TEST_VHOST;
+
 public class HelloQueue {
-
-    public static final String RABBIT_MQ_ADDRESS = "localhost";
-    public static final int RABBIT_MQ_PORT = 5672;
-
-    //default
-    public static final String RABBIT_MQ_USERNAME = "guest";
-    public static final String RABBIT_MQ_PASSWORD = "guest";
-    public static final String RABBIT_MQ_DEFAULT_VHOST = "/";
-
-    //for testing virtual host
-    public static final String RABBIT_MQ_TEST_USERNAME = "testuser";
-    public static final String RABBIT_MQ_TEST_PASSWORD = "testpass";
-    public static final String RABBIT_MQ_TEST_VHOST = "/test-vhost";
 
     public static final String QUEUE_NAME = "hello.queue";
 
