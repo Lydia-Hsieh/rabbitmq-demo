@@ -1,4 +1,4 @@
-package messageconsumptioncontrol;
+package messageconsumptioncontrol.ack;
 
 import com.rabbitmq.client.Channel;
 import helloworld.HelloQueue;

@@ -1,4 +1,4 @@
-package messageconsumptioncontrol;
+package messageconsumptioncontrol.requeue;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DeliverCallback;

@@ -36,3 +36,32 @@ channel.basicConsume(HelloQueue.QUEUE_NAME, autoAck, deliverCallback, consumerTa
 - 參數：同樣有 requeue=true/false。 
 
 >一般開發：建議用 basicNack，因為它彈性比較大（可以批次）
+
+
+## Prefetch (basicQos)
+- `PrefetchProducer`: send 10 messages
+- `PrefetchConsumerA` & `PrefetchConsumerB`
+  - subscribe same queue at the same time
+  - compare:
+    - no prefetch -> random
+    - set prefetch to 1 -> 公平分配 (Fair Dispatch)
+>autoAck=true → broker 一旦把訊息「派發」給 consumer，就立刻當作處理完成。
+>所以不管你 ConsumerA 裡 sleep 5 秒、還是 5 分鐘，RabbitMQ 都不會在意。
+>> -> 要觸發 不公平分配，需要改成manual ack + basicQos(1)
+
+- test result
+```text
+[x] Consumer A received '1', prefetch count: 1
+
+---------
+
+[x] Consumer B received '2', prefetch count: 1
+[x] Consumer B received '3', prefetch count: 2
+[x] Consumer B received '4', prefetch count: 3
+[x] Consumer B received '5', prefetch count: 4
+[x] Consumer B received '6', prefetch count: 5
+[x] Consumer B received '7', prefetch count: 6
+[x] Consumer B received '8', prefetch count: 7
+[x] Consumer B received '9', prefetch count: 8
+[x] Consumer B received '10', prefetch count: 9
+```
